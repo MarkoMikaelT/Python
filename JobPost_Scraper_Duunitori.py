@@ -32,7 +32,7 @@ mostKeywords = ""
 while k  <= runCount:
         
     html_text = requests.get('https://duunitori.fi/tyopaikat?haku=Tieto-%20ja%20tietoliikennetekniikka%20(ala)&order_by=date_posted&sivu=' + str(k)).text
-    soppa = bs(html_text, 'lxml')
+    soppa = bs(html_text, 'html.parser')
 
     #KEYWORDS TO FIND
     keyString = ["python", "php", "c#", " sql"]
@@ -48,7 +48,7 @@ while k  <= runCount:
         urlJob = link.get('href')
         print('https://duunitori.fi' + urlJob)
         driver.get('https://duunitori.fi' + urlJob)
-        driver.implicitly_wait(0.5)
+        driver.implicitly_wait(1)
         jobPost = driver.find_element(By.CLASS_NAME, 'description-box').text.lower()
 
         repls = ('\n', ''), ('<br>', '')
