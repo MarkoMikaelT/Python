@@ -1,0 +1,19 @@
+import requests
+import json
+
+url = "https://data.mongodb-api.com/app/_______/endpoint/data/v1/action/find"
+payload = json.dumps({
+    "collection": "Scrape1",
+    "database": "ScrapedData",
+    "dataSource": "ScrapeCluster",
+    "filter": {
+        "runDate":"17/01/2023",
+    }
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Access-Control-Request-Headers': '*',
+  'api-key': "----", 
+}
+response = requests.request("POST", url, headers=headers, data=payload)
+print(response.text)
